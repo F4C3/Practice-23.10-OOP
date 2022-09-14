@@ -10,7 +10,7 @@ interface CarInterface // Интерфейс с включёнными мето�
 	public function vehicleN2O(); 
 }
 
-abstract class Car implements CarInterface // Абстрактный класс с описанием базовых свойств и доступных для применения методов из интерфейса
+class Car implements CarInterface // Абстрактный класс с описанием базовых свойств и доступных для применения методов из интерфейса
 {
 	public $moveForward = '->->->->';
 	public $moveBack = '<-<-<-<-';
@@ -98,13 +98,23 @@ class Volvo extends Car
 
 class MoveVehicle
 {
+	/*
 	public function move(Car $vehicle)
 	{
 		$vehicle->vehicleMove();
 	}
+	*/
+	
+	public static function move($car) //статический класс с последующим вызовом его в перемнной $var
+	{
+		$class_name = $car;
+		$object = new $class_name;
+		return $object;
+	}
+	
 }
 
-
+/*
 $digger = new Digger();
 
 $raseCar = new Volvo();
@@ -118,3 +128,8 @@ echo "<br>";
 $moveCar = new MoveVehicle();
 
 $moveCar->move($raseCar);
+*/
+
+$var = MoveVehicle::move('Volvo');
+$var->vehicleMove();
+
